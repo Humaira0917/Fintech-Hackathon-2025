@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter # pyright: ignore[reportMissingImports]
 
 router = APIRouter()
 

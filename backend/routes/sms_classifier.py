@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter # pyright: ignore[reportMissingImports]
 from ml_model.predict import sms_predict
 
 router = APIRouter()

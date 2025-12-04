@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI # pyright: ignore[reportMissingImports]
 from routes.analyze import router as AnalyzeRouter
 from routes.sms_classifier import router as SMSRouter
 from routes.fraud_detection import router as FraudRouter
