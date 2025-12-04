@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SMS Phishing Detector</title>
+  <style>
+    body { font-family: Arial; max-width: 600px; margin: 40px auto; }
+    textarea { width: 100%; height: 150px; padding: 10px; }
+    button { padding: 10px 20px; margin-top: 10px; }
+    .result { margin-top: 20px; font-size: 18px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<h2>SMS Phishing Detector</h2>
+
+<textarea id="smsInput" placeholder="Type SMS message..."></textarea>
+<br>
+<button onclick="detectSMS()">Detect</button>
+
+<div id="output" class="result"></div>
+
+<script>
+async function detectSMS() {
+    const text = document.getElementById("smsInput").value;
+    const output = document.getElementById("output");
+    output.innerHTML = "Detecting...";
+
+    const resp = await fetch("http://127.0.0.1:8000/sms/detect", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ text })
+    });
+
+    const data = await resp.json();
+    output.innerHTML = `
+        Prediction: <b>${data.prediction.toUpperCase()}</b><br>
+        Confidence: ${data.confidence}%
+    `;
+}
+</script>
+
+</body>
+</html>
